@@ -286,7 +286,6 @@ Implementation status:
 
 - The **What you will accomplish** checklist has been added to the quickstart.
 - A reusable example rule is available at `/examples/documentation.mdc` and linked from the practical guide.
-- The quickstart includes a concise note that the workflow was tested with Cursor on macOS and that controls may differ by version.
 - A changelog was intentionally not added because this focused assessment does not yet have an ongoing release history.
 - The remaining high-value improvement is adding screenshots from a signed-in Cursor workflow.
 
