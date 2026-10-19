@@ -12,6 +12,50 @@ Build and publish a small documentation site with Thally for a developer tool yo
 - a short article that teaches another developer how to build a similar site
 - three observations about what worked, where there was friction, and what could improve
 
+## Requirement-by-requirement audit
+
+This table checks every instruction in the assessment against visible evidence. **Complete** means the requirement is already finished. **Ready to publish** means the work exists, but still needs a public article URL before the submission email is sent.
+
+| Email requirement | Status | Evidence | Final check |
+| --- | --- | --- | --- |
+| Choose a project or developer tool you know well | Complete | We chose Cursor, a developer tool with a clear agent-assisted development workflow. | The guide stays focused on workflows we can explain and verify. |
+| Configure a documentation site using Thally | Complete | `docs.json` configures the theme, navigation, fonts, logo, favicon, appearance, and links. `src/data/site.ts` provides the version-controlled site identity and colour palettes. | The configuration passes Thally's content checks and the production build. |
+| Publish the documentation site with Thally | Complete | The site is live at https://cursor.thally.app/ from `Tabintel/cursor` on `main`. | The live homepage, quickstart, guide, navigation, images, and buttons were reviewed after deployment. |
+| Include an introduction explaining what the tool does | Complete | `src/content/introduction.mdx` explains that Cursor is an AI code editor that helps developers understand a codebase, plan a change, edit files, and review the result. | The explanation is direct and does not turn into a broad feature list. |
+| Explain who the tool and guide are for | Complete | The introduction identifies developers who know Git and code editors but are new to working with an AI coding agent. | The audience is stated near the top and repeated in a dedicated section without changing its meaning. |
+| Include a working quickstart | Complete | `src/content/quickstart.mdx` takes the reader from opening a project to asking Agent for evidence, requesting one change, reviewing the diff, and running checks. | The page includes prerequisites, ordered steps, expected success, troubleshooting, and a next step. |
+| Help a new user accomplish something useful | Complete | The reader finishes one small, reviewed, validated change in a project they control. | The outcome is concrete and can be verified from the diff and passing project checks. |
+| Include one practical guide | Complete | `src/content/guides/project-rules.mdx` teaches the reader to create and verify `.cursor/rules/documentation.mdc`. | The guide produces a reusable, version-controlled result. |
+| Include examples where helpful | Complete | The quickstart includes two copyable prompts. The project-rule guide includes a complete rule file and a verification prompt. | Examples are specific enough to use but easy to adapt to another project. |
+| Include troubleshooting where helpful | Complete | Both task pages cover likely failures, including vague answers, broad edits, failed checks, unmatched globs, incorrect rule scope, and conflicting instructions. | Each troubleshooting item gives the reader a next action. |
+| Start with the Thally quickstart | Complete | We used the Thally quickstart as the setup reference and retained it in the project notes and README. | Link: https://docs.thally.io/quickstart |
+| Publish a short technical article | Ready to publish | `submission/article.md` is complete and contains the final screenshots. | Publish it and add its public URL before sending the email. This is the only unfinished assessment deliverable. |
+| Teach another developer to create a similar site | Complete in draft | The article explains the reader outcome, Thally site creation, repository structure, content model, navigation, branding, validation, deployment, and verification. | A developer can follow the sequence without needing this project's private context. |
+| Cover prerequisites | Complete in draft | The article lists Thally Cloud, GitHub access, Node.js, Git, a suitable developer tool, and a clear reader outcome. | The prerequisites appear before setup. |
+| Cover setup | Complete in draft | The article explains creating the Thally site, connecting the repository, cloning it, and identifying the production branch. | Commands and expected repository names are included. |
+| Cover configuration | Complete in draft | The article shows `docs.json`, the `sharp` theme, Inter fonts, navigation, logo and favicon configuration, and the palettes in `src/data/site.ts`. | Configuration examples match the repository. |
+| Cover content creation | Complete in draft | The article explains the three-page content model, frontmatter, outcome-led quickstart, examples, success checks, and troubleshooting. | The article includes a real MDX example. |
+| Cover publishing | Complete in draft | The article explains validation, pushing to the connected production branch, and checking the live revision, branding, and links. | The live site and source repository are linked. |
+| Include obstacles and how they were resolved | Complete in draft | The article describes the repository mismatch, the live `/api/site-config` check, the framework-owned warning, and why generated runtime files were not patched locally. | Each obstacle includes the decision or resolution, not just the problem. |
+| Keep the submission small and focused | Complete | The public site has three purposeful pages and one reader journey. | We avoided padding the site with empty sections or a broad feature catalogue. |
+| Demonstrate technical accuracy | Complete, with final manual check recommended | Product claims link to Cursor's official documentation. The docs check, tests, build, and live navigation review passed. | Follow the quickstart once in the current Cursor app and add the workflow screenshots before submission if time allows. |
+| Demonstrate clear explanations and working instructions | Complete | Pages lead with outcomes, address the reader directly, use ordered steps, and show what success looks like. | Read the final article aloud once after publishing. |
+| Provide developer experience feedback and honest criticism | Complete in draft | The article includes **What worked well**, **Where I encountered friction**, and **What I would improve**. | Include the short note below in the submission email. |
+
+### Honest feedback note for the submission email
+
+Thally gave me a strong docs-as-code starting point, useful validation, and a simple path from GitHub to a live documentation site. The main friction was understanding which repository and revision the live site was publishing, especially when I had another similarly named repository. Making the connected repository, branch, live commit, and branding precedence more visible in the Cloud dashboard would make verification faster. I found the tool useful because it kept content, navigation, validation, deployment, search, and agent-facing documentation surfaces connected to one source.
+
+### Completion summary
+
+- Documentation engineering: complete and live.
+- Technical article: written, illustrated, and ready to publish.
+- Remaining action: publish the article and copy its public URL into the submission email.
+- Submission links: live site and repository are ready.
+- Feedback: worked well, friction, and improvement observations are ready.
+
+Do not state that every deliverable is submitted until the article has a public URL. Once that URL exists, every requested deliverable in the email will be complete.
+
 ## Product choice
 
 We chose Cursor because it is a developer tool with a clear first-user journey and practical configuration workflows.
