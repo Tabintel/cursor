@@ -1,68 +1,52 @@
 {
-  "theme": "default",
+  "theme": "sharp",
   "appearance": {
+    "default": "system",
+    "showToggle": true,
     "contentIcons": "accent"
   },
-  "markdown": {
-    "enabled": true
+  "fonts": {
+    "body": {
+      "family": "Inter",
+      "weight": ["400", "500", "600"]
+    },
+    "heading": {
+      "family": "Inter",
+      "weight": ["400", "500", "600"]
+    }
   },
+  "favicon": {
+    "light": "/brand/cursor-light.svg",
+    "dark": "/brand/cursor-dark.svg"
+  },
+  "markdown": { "enabled": true },
   "i18n": {
     "defaultLocale": "en",
-    "locales": [
-      {
-        "code": "en",
-        "label": "English"
-      }
-    ]
+    "locales": [{ "code": "en", "label": "English" }]
   },
   "navbar": {
-    "primary": {
-      "label": "Get started",
-      "href": "/quickstart"
-    }
+    "logo": {
+      "light": "/brand/cursor-light.svg",
+      "dark": "/brand/cursor-dark.svg",
+      "showTitle": true
+    },
+    "primary": { "label": "Get started", "href": "/quickstart" }
   },
   "tabs": [
     {
-      "tab": "Get started",
+      "tab": "Cursor Guide",
       "groups": [
         {
-          "group": "Get started",
+          "group": "Start here",
+          "icon": "book-open",
           "pages": ["introduction", "quickstart"]
         },
         {
-          "group": "Design your docs",
-          "pages": ["components", "customization"]
+          "group": "Practical guides",
+          "icon": "wrench",
+          "pages": ["guides/project-rules"]
         }
       ]
-    },
-    {
-      "tab": "Guides",
-      "groups": [
-        {
-          "group": "Work with Thally",
-          "pages": [
-            "guides/create-a-site",
-            "guides/work-with-the-cli",
-            "guides/connect-ai-tools"
-          ]
-        }
-      ]
-    },
-    {
-      "tab": "API Reference",
-      "groups": [
-        {
-          "group": "Overview",
-          "pages": ["api/introduction", "api/authentication"]
-        }
-      ],
-      "api": {
-        "source": "openapi.yaml"
-      }
-    },
-    {
-      "tab": "Changelog",
-      "href": "/changelog"
     }
   ]
 }

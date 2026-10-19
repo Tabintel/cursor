@@ -70,4 +70,18 @@ upgrade an existing site or move a production release pointer.
 
 ## Product context
 
-<!-- Add canonical terminology, audience details, and content boundaries here. -->
+- This is an independent guide to Cursor. It is not an official Cursor publication.
+- The audience is developers who know how to use Git and a code editor but are new to Cursor.
+- Prefer task-based guidance over broad feature tours.
+- Support Cursor product claims with current official documentation at `cursor.com/docs`.
+- Do not document beta or experimental behavior unless a task explicitly requires it.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+## This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

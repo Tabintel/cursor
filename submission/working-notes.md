@@ -1,0 +1,229 @@
+# Cursor Guide assessment notes
+
+These notes record the work, decisions, problems, fixes, and lessons from the Thally assessment. They are written for future reference and are not part of the public documentation navigation.
+
+## Assessment brief
+
+Build and publish a small documentation site with Thally for a developer tool you know. Include:
+
+- an introduction that explains the tool and audience
+- a working quickstart with a useful outcome
+- one practical guide with examples and troubleshooting
+- a short article that teaches another developer how to build a similar site
+- three observations about what worked, where there was friction, and what could improve
+
+## Product choice
+
+We chose Cursor because it is a developer tool with a clear first-user journey and practical configuration workflows.
+
+The guide is independent. It does not claim to be Cursor's official documentation.
+
+## Reader and outcome
+
+The reader already knows how to use Git and a code editor but is new to Cursor.
+
+The core outcome is:
+
+> Use Cursor Agent to understand a project, make one focused change, review the diff, and verify the result.
+
+This outcome kept the project small enough for the assessment while still demonstrating real documentation engineering.
+
+## Public information
+
+- Live site: https://cursor.thally.app/
+- Production repository: https://github.com/Tabintel/cursor
+- Production branch: `main`
+- Official Cursor docs: https://cursor.com/docs
+- Official Cursor quickstart: https://cursor.com/docs/get-started/quickstart
+- Official Cursor rules reference: https://cursor.com/docs/rules
+- Thally quickstart: https://docs.thally.io/quickstart
+
+## Repository lesson
+
+Two repositories existed during the work:
+
+- `Tabintel/cursor-guides`, which we initially prepared manually
+- `Tabintel/cursor`, which Thally Cloud created and actually deployed
+
+The live site's `/api/site-config` response showed that `Tabintel/cursor` was the production repository. This was stronger evidence than the repository name we expected.
+
+Lesson: always confirm the deployed repository and branch from the live site or Thally deployment details before editing or pushing.
+
+## Content structure
+
+The public guide contains three pages:
+
+```text
+src/content/
+  introduction.mdx
+  quickstart.mdx
+  guides/
+    project-rules.mdx
+```
+
+A hidden `src/content/api/introduction.mdx` page remains only because the current starter test suite expects an API route parameter. It is not included in public navigation and does not claim that Cursor exposes an API documented by this guide.
+
+## Why these pages
+
+### Introduction
+
+The introduction explains what Cursor does, who the guide is for, and the responsibility the developer keeps when using an agent.
+
+### Quickstart
+
+The quickstart gives the reader a complete workflow:
+
+1. Open a project.
+2. Ask Agent for an evidence-based explanation.
+3. Request one focused change.
+4. Review every changed line.
+5. Run the project's checks.
+
+### Project rules guide
+
+The practical guide creates `.cursor/rules/documentation.mdc`, explains the fields, verifies the rule, and covers common failure cases.
+
+## Writing decisions
+
+- Address the reader as “you”.
+- Lead with the outcome.
+- Use short paragraphs and sentence-case headings.
+- Keep one job per page.
+- Include expected results and troubleshooting.
+- Avoid broad feature lists.
+- Link product claims to current official documentation.
+- Do not use em or en dashes in authored content.
+
+## Branding research
+
+We inspected Cursor's current documentation instead of choosing colours by memory.
+
+Observed visual tokens:
+
+| Token | Light | Dark |
+| --- | --- | --- |
+| Background | `#F7F7F4` | `#14120B` |
+| Foreground | `#26251E` | `#EDECEC` |
+| Card | `#FFFFFF` | `#1B1913` |
+| Border | `#D9D8D2` | `#2A2822` |
+
+Cursor's public documentation uses tight `4px` corners, so the Thally `sharp` structural theme was the closest supported choice.
+
+Cursor uses proprietary Cursor Sans and Berkeley Mono fonts. We did not copy those font files. We used Inter for body and heading text and retained Thally's code font.
+
+## Branding files
+
+- `docs.json` controls the `sharp` theme, fonts, logo, favicon, appearance, and navigation.
+- `src/data/site.ts` contains the version-controlled light and dark colour palettes.
+- `public/brand/cursor-light.svg` is the light-mode Cursor mark.
+- `public/brand/cursor-dark.svg` is the dark-mode Cursor mark.
+
+The marks were downloaded from Cursor's public documentation assets. Cursor and Anysphere retain their rights to the name and marks.
+
+## Screenshot plan
+
+Every screenshot needs useful alt text and a caption that explains why the reader is seeing it.
+
+| Screenshot | Location | Status | Purpose |
+| --- | --- | --- | --- |
+| Cursor Agent from official docs | Introduction and article | Added | Shows the product being documented |
+| Thally Cloud site overview | Article | Added | Proves the site deployed and records the readiness score |
+| Cursor Guide homepage, dark mode | Article | Needed after deployment | Shows the finished dark palette |
+| Cursor Guide homepage, light mode | Article | Needed after deployment | Shows the finished light palette |
+| Agent explanation prompt | Quickstart and article | Needed | Shows the first prompt and evidence-based response |
+| Proposed diff in Cursor | Quickstart and article | Needed | Shows the review step |
+| `.cursor/rules/documentation.mdc` | Project-rules guide and article | Needed | Shows the rule in the editor |
+| Thally deployment with commit SHA | Article | Needed after deployment | Proves the exact revision that went live |
+
+Do not use decorative screenshots. Each image should explain a step, confirm a result, or help the reader recognise the correct UI.
+
+## Validation workflow
+
+Install the pinned checker:
+
+```bash
+npm ci --ignore-scripts --prefix .github/thally-tooling
+```
+
+Run the documentation check:
+
+```bash
+.github/thally-tooling/node_modules/.bin/thally check --ci .
+```
+
+Run the project tests and production build:
+
+```bash
+npm test
+npm run build
+```
+
+Expected result from the initial reviewed guide:
+
+- Thally check: 0 errors and 0 warnings
+- Tests: 1,673 passed and 8 skipped
+- Production build: successful
+
+## Friction log
+
+### Network access in the local environment
+
+Package and repository downloads initially failed because restricted network access could not resolve external hosts. Retrying the approved commands with network access resolved the issue.
+
+### Repository mismatch
+
+The first completed guide was pushed to `Tabintel/cursor-guides`, but the live site was connected to `Tabintel/cursor`. Checking `https://cursor.thally.app/api/site-config` exposed the mismatch.
+
+### Starter test contracts
+
+Removing every API seed page caused one framework test to fail because the starter expected a non-empty API route parameter. We restored one hidden seed page without adding an irrelevant API section to the public navigation.
+
+### Homepage contract
+
+The starter's server-rendering test expected the homepage to use Thally's semantic `Hero` component and contain a substantial heading hierarchy. We updated the introduction to use `mode: home` and `<Hero>`.
+
+### Local preview warning
+
+The local preview logged a Next.js warning about synchronous access to `searchParams` in a framework-owned route. The pages still loaded, all tests passed, and the production build succeeded.
+
+We did not patch the generated runtime code in the customer repository. Runtime fixes must come through a Thally framework update.
+
+## What worked well
+
+- Thally gave us a complete docs-as-code project and managed deployment path.
+- MDX components made the quickstart and homepage easier to scan.
+- The pinned checker caught content and navigation problems early.
+- Tests caught assumptions that a successful page build did not expose.
+- The same source publishes HTML, Markdown, search, agent discovery files, and MCP surfaces.
+
+## What could improve
+
+- Show the live repository, branch, and commit more prominently in the Cloud overview.
+- Warn when the connected production repository differs from a repository recently opened or selected by the user.
+- Show managed branding overrides beside source-controlled defaults.
+- Make stale deployment detection visible without requiring an API check.
+- Remove the local `searchParams` warning in a future runtime update.
+
+## Article location
+
+The article draft is stored at `submission/article.md`.
+
+Before publishing it:
+
+1. Add the remaining screenshots from the checklist.
+2. Replace any temporary observations with the final deployment result.
+3. Confirm the live commit and URL.
+4. Read the article aloud and simplify anything that sounds formal or repetitive.
+
+## Submission checklist
+
+- [ ] Live site shows the Cursor Guide pages.
+- [ ] Live site uses the Cursor-inspired light and dark themes.
+- [ ] Logo and favicon work in both modes.
+- [ ] Quickstart has been followed from beginning to end.
+- [ ] Project-rule example has been tested in Cursor.
+- [ ] Required screenshots have been added.
+- [ ] Article has been published.
+- [ ] Live site, repository, and article links are ready.
+- [ ] Three brief observations are ready for the email.
+- [ ] The deployed commit matches the reviewed `main` commit.

@@ -90,44 +90,43 @@ export interface SiteConfig {
 }
 
 const brandPresets: Record<BrandPresetKey, BrandConfig> = {
-  // A warm neutral foundation with restrained green and violet accents.
+  // Cursor-inspired neutral surfaces based on the current public docs site.
   primary: {
     light: {
-      background: '#FCFCF7',
+      background: '#F7F7F4',
       // The docs handoff uses the page surface for cards; hierarchy comes from
       // hairline borders rather than white tiles or elevation.
-      card: '#FCFCF7',
-      foreground: '#1A2018',
-      muted: '#EFEFE9',
-      mutedForeground: '#747B72',
-      border: '#E5E6E1',
-      accent: '#007852',
-      accentForeground: '#FFFFFF',
-      accent2: '#755FBB',
-      accent2Foreground: '#0B0A13',
-      input: '#E5E6E1',
-      sidebar: '#F7F7F2',
-      ring: '#397059',
-      // Olive-family tint (the leaf's own green) for the active sidebar item
-      sidebarActiveBg: '68 40% 88% / 0.65',
-      sidebarActiveText: '#454A22',
+      card: '#FFFFFF',
+      foreground: '#26251E',
+      muted: '#EFEFEA',
+      mutedForeground: '#6F6D64',
+      border: '#D9D8D2',
+      accent: '#26251E',
+      accentForeground: '#F7F7F4',
+      accent2: '#6F6D64',
+      accent2Foreground: '#F7F7F4',
+      input: '#EFEFEA',
+      sidebar: '#F7F7F4',
+      ring: '#26251E',
+      sidebarActiveBg: '48 12% 91%',
+      sidebarActiveText: '#26251E',
     },
     dark: {
-      background: '#040704',
-      card: '#060906',
-      foreground: '#EFEFE7',
-      muted: '#0E130F',
-      mutedForeground: '#929C90',
-      border: '#1B1E1A',
-      accent: '#BAE43E',
-      accentForeground: '#101911',
-      accent2: '#AC9CF0',
-      accent2Foreground: '#0B0A13',
-      input: '#29302A',
-      sidebar: '#060906',
-      ring: '#BAE43E',
-      sidebarActiveBg: '132 15% 6%',
-      sidebarActiveText: '#BAE43E',
+      background: '#14120B',
+      card: '#1B1913',
+      foreground: '#EDECEC',
+      muted: '#1B1913',
+      mutedForeground: '#A9A79F',
+      border: '#2A2822',
+      accent: '#EDECEC',
+      accentForeground: '#14120B',
+      accent2: '#A9A79F',
+      accent2Foreground: '#14120B',
+      input: '#1B1913',
+      sidebar: '#14120B',
+      ring: '#EDECEC',
+      sidebarActiveBg: '45 17% 11%',
+      sidebarActiveText: '#EDECEC',
     },
   },
   // Alternate preset — violet. Still a first-class, ready-to-use accent.
@@ -176,13 +175,11 @@ const templateSiteConfig: SiteConfig = {
 // Managed by Thally Cloud onboarding.
 export const siteConfig: SiteConfig = {
   ...templateSiteConfig,
-  name: "Cursor",
-  description: "An Agentic IDE for Software Engineering Teams",
+  name: "Cursor Guide",
+  description: "A practical guide to understanding a project, making a safe change, and working with Cursor project rules.",
   repoUrl: "https://github.com/Tabintel/cursor",
   links: [
     { label: "Get started", href: "/quickstart" },
-    { label: "Support", href: "https://github.com/Tabintel/cursor/issues/new" },
     { label: "GitHub", href: "https://github.com/Tabintel/cursor" },
-    { label: "Changelog", href: "/changelog" },
   ],
 };

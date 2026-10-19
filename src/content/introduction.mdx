@@ -1,45 +1,59 @@
 ---
-title: Introduction
-description: Give readers a clear path from their first question to a result they can verify.
+title: Introduction to Cursor
+description: Learn what Cursor is, who this independent guide is for, and what you will accomplish with it.
 mode: home
 ---
 
 <Hero
-  title="Build documentation around the reader"
-  subtitle="Start with a useful first result, organize what follows, and publish every format from one reviewable source."
-  primaryLabel="Get started"
+  title="Work with Cursor, one reviewed change at a time"
+  subtitle="Understand a codebase, make a focused change, review the result, and give Agent useful project context."
+  primaryLabel="Start the quickstart"
   primaryHref="/quickstart"
-  secondaryLabel="Publish your docs"
-  secondaryHref="/guides/create-a-site"
+  secondaryLabel="Add a project rule"
+  secondaryHref="/guides/project-rules"
 />
 
-## Build the reader journey
+## What Cursor helps you do
 
-Begin with the task that brings most readers to your documentation, then make
-the next useful step obvious.
+Cursor is an AI code editor that can help you understand a codebase, plan a change, edit files, and review the result.
 
-<CardGroup cols="2">
-  <Card title="Write your quickstart" icon="party-horn" href="/quickstart">
-    Turn prerequisites, setup, one realistic task, and verification into a short path.
-  </Card>
-  <Card title="Organize your navigation" icon="grid-round" href="/customization">
-    Group related tasks and references around how people use your product.
-  </Card>
-  <Card title="Document your API" icon="code-simple" href="/api">
-    Replace `openapi.yaml` to publish browsable endpoint docs with a live playground.
-  </Card>
-  <Card title="Learn the Thally workflow" icon="wrench" href="/guides/create-a-site">
-    Create, publish, and update sites from the Cloud dashboard, the CLI, or your AI tools.
-  </Card>
-</CardGroup>
+This independent guide is for developers who already know how to open a project and use Git, but are new to working with an AI coding agent inside their editor.
 
-## Publish from one source
+<Frame caption="Cursor Agent inside the editor. Image from the official Cursor documentation.">
+  ![Cursor Agent open beside a codebase](/images/cursor/agent-homepage.png)
+</Frame>
 
-Thally turns the same reviewed content into HTML, search, agent discovery files,
-Markdown mirrors, and a read-only MCP surface — so people and AI tools read the
-same, current answer. Add only the locales your readers need.
+You will use Cursor to:
 
-<Note type="info" title="Start with the product, not the template">
-  Replace this page with the questions, terminology, and workflows your readers
-  already use. Keep `docs.json` focused on the path between those tasks.
+- understand an unfamiliar project
+- make one small, focused change
+- review the generated diff before accepting it
+- run the project's checks
+- add a reusable project rule for future work
+
+The goal is not to hand every decision to an agent. The goal is to give the agent clear context, inspect its work, and keep responsibility for the final change.
+
+<Note type="info" title="Independent guide">
+  This guide is not an official Cursor publication. Product names and links refer to Cursor's official website and documentation.
 </Note>
+
+## Who this guide is for
+
+Use this guide if you already know how to open a project and use Git, but are new to working with an AI coding agent inside your editor. The examples focus on a small, reviewable workflow rather than a broad tour of every Cursor feature.
+
+## Before you begin
+
+You need:
+
+- [Cursor installed](https://cursor.com/downloads)
+- a Cursor account
+- a local project that you are allowed to edit
+- the commands used to test or validate that project
+
+If you do not have a suitable project, start with a small personal project or a repository created for practice.
+
+You should also know the project's normal validation command. This may be `npm test`, `npm run build`, or an equivalent command for the language and framework you use. The quickstart treats a passing check as part of the change, not as an optional final step.
+
+## Next step
+
+Continue to the [quickstart](/quickstart) to make your first reviewed change.
