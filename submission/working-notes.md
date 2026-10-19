@@ -177,8 +177,8 @@ Every screenshot needs useful alt text and a caption that explains why the reade
 | Cursor Guide project-rule page | Article | Added | Shows the practical example and code presentation |
 | Cursor Guide homepage, light mode | Article | Optional | Shows the finished light palette |
 | Agent explanation prompt | Quickstart and article | Added | Shows the first prompt and evidence-based response |
-| Proposed diff in Cursor | Quickstart and article | Needed | Shows the review step |
-| `.cursor/rules/documentation.mdc` | Project-rules guide and article | Needed | Shows the rule in the editor |
+| Rule verification in Cursor | Project-rules guide and article | Added | Shows a scoped prompt, the matching rule, and review controls |
+| `.cursor/rules/documentation.mdc` | Project-rules guide and article | Added | Shows the rule, file patterns, and repository location |
 | Thally deployment with commit SHA | Article | Needed after deployment | Proves the exact revision that went live |
 
 Do not use decorative screenshots. Each image should explain a step, confirm a result, or help the reader recognise the correct UI.
@@ -252,6 +252,10 @@ Add it after **Create the rule** in the project-rule guide. Caption it: “Store
 Open a matching documentation file, ask Agent to apply the rule, and capture the response naming the rule or showing the compliant change.
 
 Add it after **Verify the rule**. Caption it: “Verify that Agent applies the rule to a matching documentation file.”
+
+Completed with `cursor-rule-diff.png`. Cursor received a scoped request for a matching documentation file, recognised the project instructions, changed only the temporary practice file, and left the result behind review controls. The temporary file was removed after the screenshot.
+
+The project-rule screenshot is saved as `cursor-project-rule.png`. It shows `.cursor/rules/documentation.mdc`, its matching file patterns, and the first documentation standards in the editor.
 
 For each screenshot, use a wide layout, keep the relevant area readable, crop empty space, and give the file a descriptive name such as `cursor-agent-explanation.png`. Save the final images under `public/images/cursor/workflow/`.
 

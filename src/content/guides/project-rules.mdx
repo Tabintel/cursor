@@ -32,6 +32,13 @@ The glob limits the rule to Markdown and MDX files under `docs/`.
 
 You can also [download the example rule](/examples/documentation.mdc) and copy it into `.cursor/rules/documentation.mdc` in your project.
 
+<Frame caption="Store durable documentation instructions in a version-controlled project rule.">
+  <img
+    src="/images/cursor/workflow/cursor-project-rule.png"
+    alt="Cursor editor showing a documentation project rule and its matching file patterns"
+  />
+</Frame>
+
 ## Verify the rule
 
 Open a documentation file under `docs/`, then ask Agent:
@@ -42,6 +49,13 @@ Explain which project rule you applied, then show the proposed change.
 ```
 
 Review the response and diff. The revised text should address the reader directly, lead with the outcome, and keep the existing meaning.
+
+<Frame caption="Ask Cursor to identify the matching rule, make one focused change, and leave the result for your review.">
+  <img
+    src="/images/cursor/workflow/cursor-rule-diff.png"
+    alt="Cursor Agent receiving a focused request to apply the documentation project rule"
+  />
+</Frame>
 
 ## Keep rules useful
 

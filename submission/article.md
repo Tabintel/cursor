@@ -222,6 +222,20 @@ I used neutral accent colours because Cursor's documentation does not rely on a 
   <figcaption>The practical guide combines a focused explanation, a reusable rule example, verification, and troubleshooting.</figcaption>
 </figure>
 
+The guide does not stop at a copied code sample. It shows the rule inside Cursor, including the file patterns that determine where it applies.
+
+<figure>
+  <img src="https://cursor.thally.app/images/cursor/workflow/cursor-project-rule.png" alt="Cursor editor showing a documentation project rule and its matching file patterns" />
+  <figcaption>The rule keeps durable documentation standards in the repository, where every contributor can review them.</figcaption>
+</figure>
+
+I then tested the rule with a matching documentation file. Cursor identified the relevant instructions, limited the task to one file, and left the proposed change for review.
+
+<figure>
+  <img src="https://cursor.thally.app/images/cursor/workflow/cursor-rule-diff.png" alt="Cursor Agent receiving a focused request to apply the documentation project rule" />
+  <figcaption>A focused verification prompt checks that the rule applies before a maintainer accepts the change.</figcaption>
+</figure>
+
 ## 9. Validate the site
 
 Before publishing, I ran the checks required by the repository:
