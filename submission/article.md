@@ -80,6 +80,11 @@ description: Use Cursor Agent to understand a project, make one focused change, 
 After this quickstart, you will have used Cursor Agent to make and verify one small change in a project you control.
 ```
 
+<figure>
+  <img src="https://cursor.thally.app/images/cursor/workflow/cursor-agent-explanation.png" alt="Cursor Agent answering a project explanation prompt with the files a new contributor should read first" />
+  <figcaption>I followed the quickstart in Cursor and confirmed that Agent grounded its explanation in the repository instead of editing files.</figcaption>
+</figure>
+
 ## 4. Configure the navigation
 
 I kept the public navigation short and task-based in `docs.json`:

@@ -1,0 +1,14 @@
+---
+description: Writing standards for project documentation
+globs: "src/content/**/*.md,src/content/**/*.mdx,submission/**/*.md"
+alwaysApply: false
+---
+
+# Documentation standards
+
+- Address the reader as "you".
+- Lead with the outcome.
+- Use sentence-case headings.
+- Keep paragraphs short.
+- Format commands, file names, and configuration keys with backticks.
+- End each task with a clear success check.

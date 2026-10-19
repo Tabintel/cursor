@@ -176,7 +176,7 @@ Every screenshot needs useful alt text and a caption that explains why the reade
 | Cursor Guide quickstart | Article | Added | Shows the outcome-led task structure |
 | Cursor Guide project-rule page | Article | Added | Shows the practical example and code presentation |
 | Cursor Guide homepage, light mode | Article | Optional | Shows the finished light palette |
-| Agent explanation prompt | Quickstart and article | Needed | Shows the first prompt and evidence-based response |
+| Agent explanation prompt | Quickstart and article | Added | Shows the first prompt and evidence-based response |
 | Proposed diff in Cursor | Quickstart and article | Needed | Shows the review step |
 | `.cursor/rules/documentation.mdc` | Project-rules guide and article | Needed | Shows the rule in the editor |
 | Thally deployment with commit SHA | Article | Needed after deployment | Proves the exact revision that went live |
