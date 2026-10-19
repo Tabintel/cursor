@@ -17,7 +17,7 @@ The guide has three public pages:
 I kept the scope small because the goal was not to list every Cursor feature. The goal was to help a new user complete one useful workflow without guessing.
 
 <figure>
-  <img src="https://raw.githubusercontent.com/Tabintel/cursor/main/public/images/article/cursor-guide-homepage.png" alt="Cursor Guide homepage in dark mode with task-based navigation and buttons for the quickstart and project-rule guide" />
+  <img src="https://cursor.thally.app/images/article/cursor-guide-homepage.png" alt="Cursor Guide homepage in dark mode with task-based navigation and buttons for the quickstart and project-rule guide" />
   <figcaption>The published homepage gives a new reader two clear starting points without presenting every Cursor feature at once.</figcaption>
 </figure>
 
@@ -51,7 +51,7 @@ cd cursor
 ```
 
 <figure>
-  <img src="https://raw.githubusercontent.com/Tabintel/cursor/main/public/images/article/thally-cloud-live.png" alt="Thally Cloud dashboard showing the Cursor site as live and an Agent Readiness score of 89 out of 100" />
+  <img src="https://cursor.thally.app/images/article/thally-cloud-live.png" alt="Thally Cloud dashboard showing the Cursor site as live and an Agent Readiness score of 89 out of 100" />
   <figcaption>Thally Cloud confirmed that the first deployment was live and gave the site an Agent Readiness score.</figcaption>
 </figure>
 
@@ -107,7 +107,7 @@ I kept the public navigation short and task-based in `docs.json`:
 This gives the reader one obvious path through the site.
 
 <figure>
-  <img src="https://raw.githubusercontent.com/Tabintel/cursor/main/public/images/article/cursor-guide-quickstart.png" alt="Published Cursor Guide quickstart showing prerequisites and the first steps for making a reviewed change" />
+  <img src="https://cursor.thally.app/images/article/cursor-guide-quickstart.png" alt="Published Cursor Guide quickstart showing prerequisites and the first steps for making a reviewed change" />
   <figcaption>The quickstart leads with the outcome, then moves into prerequisites and an ordered workflow.</figcaption>
 </figure>
 
@@ -116,7 +116,7 @@ This gives the reader one obvious path through the site.
 I did not want to guess what a Cursor-inspired site should look like, so I inspected the current [Cursor documentation](https://cursor.com/docs).
 
 <figure>
-  <img src="https://raw.githubusercontent.com/Tabintel/cursor/main/public/images/cursor/agent-homepage.png" alt="Cursor Agent open beside a codebase in the official Cursor documentation" />
+  <img src="https://cursor.thally.app/images/cursor/agent-homepage.png" alt="Cursor Agent open beside a codebase in the official Cursor documentation" />
   <figcaption>The official Cursor documentation gave me a product reference and a visual direction for the independent guide.</figcaption>
 </figure>
 
@@ -213,7 +213,7 @@ dark: {
 I used neutral accent colours because Cursor's documentation does not rely on a bright brand colour for every active state.
 
 <figure>
-  <img src="https://raw.githubusercontent.com/Tabintel/cursor/main/public/images/article/cursor-guide-project-rule.png" alt="Published Cursor Guide page showing how to create a reusable Cursor project rule" />
+  <img src="https://cursor.thally.app/images/article/cursor-guide-project-rule.png" alt="Published Cursor Guide page showing how to create a reusable Cursor project rule" />
   <figcaption>The practical guide combines a focused explanation, a reusable rule example, verification, and troubleshooting.</figcaption>
 </figure>
 

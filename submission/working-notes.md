@@ -282,6 +282,16 @@ Recommended next improvements:
 4. Add a small **Tested with** note containing the Cursor version and date. Cursor changes quickly, so this gives readers useful freshness context.
 5. Add a concise changelog only if the guide will continue after the assessment. Do not add an empty section just to appear larger.
 
+Implementation status:
+
+- The **What you will accomplish** checklist has been added to the quickstart.
+- A reusable example rule is available at `/examples/documentation.mdc` and linked from the practical guide.
+- The quickstart now records that it was reviewed with Cursor 3.25.9 on macOS on October 19, 2026.
+- A changelog was intentionally not added because this focused assessment does not yet have an ongoing release history.
+- The remaining high-value improvement is adding screenshots from a signed-in Cursor workflow.
+
+Cursor Desktop is available locally and the public assessment repository can be opened safely for screenshots. Agent workflow screenshots require a signed-in Cursor session. Do not stage a fake response for the guide. Capture the real prompt, response, diff, and validation result after signing in and completing the quickstart once.
+
 Font recommendation: keep Inter for body and headings. It is readable, loads reliably, and lets the content lead. JetBrains Mono or another monospaced font would work well for code and small metadata, but using a monospaced font for all prose would make the task guides slower to read. Cursor Sans and Berkeley Mono should not be copied because they are not distributed with this project.
 
 Visual recommendation: keep the warm neutral palette and `sharp` theme. A bright accent colour would make the site less faithful to Cursor's restrained interface. The strongest way to stand out is through clear outcomes, real screenshots, honest troubleshooting, tested links, and visible proof that the workflow works.
