@@ -16,6 +16,11 @@ The guide has three public pages:
 
 I kept the scope small because the goal was not to list every Cursor feature. The goal was to help a new user complete one useful workflow without guessing.
 
+<figure>
+  <img src="https://raw.githubusercontent.com/Tabintel/cursor/main/public/images/article/cursor-guide-homepage.png" alt="Cursor Guide homepage in dark mode with task-based navigation and buttons for the quickstart and project-rule guide" />
+  <figcaption>The published homepage gives a new reader two clear starting points without presenting every Cursor feature at once.</figcaption>
+</figure>
+
 ## Prerequisites
 
 To follow the same process, you need:
@@ -100,6 +105,11 @@ I kept the public navigation short and task-based in `docs.json`:
 ```
 
 This gives the reader one obvious path through the site.
+
+<figure>
+  <img src="https://raw.githubusercontent.com/Tabintel/cursor/main/public/images/article/cursor-guide-quickstart.png" alt="Published Cursor Guide quickstart showing prerequisites and the first steps for making a reviewed change" />
+  <figcaption>The quickstart leads with the outcome, then moves into prerequisites and an ordered workflow.</figcaption>
+</figure>
 
 ## 5. Study Cursor's visual language
 
@@ -202,6 +212,11 @@ dark: {
 
 I used neutral accent colours because Cursor's documentation does not rely on a bright brand colour for every active state.
 
+<figure>
+  <img src="https://raw.githubusercontent.com/Tabintel/cursor/main/public/images/article/cursor-guide-project-rule.png" alt="Published Cursor Guide page showing how to create a reusable Cursor project rule" />
+  <figcaption>The practical guide combines a focused explanation, a reusable rule example, verification, and troubleshooting.</figcaption>
+</figure>
+
 ## 9. Validate the site
 
 Before publishing, I ran the checks required by the repository:
@@ -215,7 +230,9 @@ npm run build
 
 The content check completed with no errors or warnings. All 1,673 tests passed, and the production build completed successfully.
 
-I also opened the local preview and reviewed the homepage, quickstart, navigation, code blocks, internal links, and theme behaviour.
+I also opened the local preview and reviewed the homepage, quickstart, navigation, code blocks, internal links, and theme behaviour. On the published site, I followed both homepage calls to action and checked the sidebar, page navigation, footer, and external references.
+
+The sidebar labels **Start here** and **Practical guides** organise the pages below them. They are section headings rather than links, so selecting them does not open a page. The actual page links and calls to action navigate correctly.
 
 ## 10. Publish and verify the exact revision
 
