@@ -172,6 +172,9 @@ Every screenshot needs useful alt text and a caption that explains why the reade
 | --- | --- | --- | --- |
 | Cursor Agent from official docs | Introduction and article | Added | Shows the product being documented |
 | Thally Cloud site overview | Article | Added | Proves the site deployed and records the readiness score |
+| Thally docs-source selection | Article | Added | Shows how to create a repository from the maintained Thally template |
+| GitHub authorization | Article | Added | Shows the account-selection step for connecting Thally's GitHub App |
+| Production deployment details | Article | Added | Confirms the repository, `main` branch, healthy site, and successful production publish |
 | Cursor Guide homepage, dark mode | Article | Added | Shows the finished dark palette and reader entry points |
 | Cursor Guide quickstart | Article | Added | Shows the outcome-led task structure |
 | Cursor Guide project-rule page | Article | Added | Shows the practical example and code presentation |

@@ -41,7 +41,21 @@ That outcome shaped the navigation. The introduction provides context, the quick
 
 ## 2. Create the repository and Thally site
 
-I created the site in Thally Cloud and chose the option to create a new documentation repository. Thally created `Tabintel/cursor` from its current starter, connected `main` as the production branch, and published the first deployment at [cursor.thally.app](https://cursor.thally.app/).
+I created the site in Thally Cloud and chose **Create a new docs repository**. This option creates a repository from Thally's maintained template and connects it to the deployment workflow.
+
+<figure>
+  <img src="https://cursor.thally.app/images/article/thally-choose-docs-source.png" alt="Thally Cloud Docs source step with Create a new docs repository selected and the GitHub connection controls visible" />
+  <figcaption>Choose where the documentation will live. I selected a new repository so Thally could create it from the maintained template.</figcaption>
+</figure>
+
+I selected **Check GitHub**, then authorized Thally Labs to use the GitHub account that would own the documentation repository. Only connect an account where you have permission to create and manage the project.
+
+<figure>
+  <img src="https://cursor.thally.app/images/article/thally-authorize-github.png" alt="GitHub authorization screen asking which account should authorize Thally Labs" />
+  <figcaption>Authorize Thally's GitHub App with the account that should own or access the documentation repository.</figcaption>
+</figure>
+
+Thally created `Tabintel/cursor` from its current starter, connected `main` as the production branch, and published the first deployment at [cursor.thally.app](https://cursor.thally.app/).
 
 I then cloned the generated repository locally:
 
@@ -264,6 +278,11 @@ After publishing, I check three things:
 3. The live site uses the expected colours, logo, navigation, and page links in both themes.
 
 This verification matters. A successful deployment message does not prove that the intended repository revision is the one readers can see.
+
+<figure>
+  <img src="https://cursor.thally.app/images/article/thally-production-deployment.png" alt="Thally Cloud deployments page showing the Cursor site as healthy, the Tabintel cursor repository, the main branch, and a successful production deployment" />
+  <figcaption>The deployment details confirm the live site, connected repository, production branch, successful status, and build duration.</figcaption>
+</figure>
 
 ## What worked well
 
