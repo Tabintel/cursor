@@ -38,13 +38,15 @@ This table checks every instruction in the assessment against visible evidence. 
 | Cover publishing | Complete in draft | The article explains validation, pushing to the connected production branch, and checking the live revision, branding, and links. | The live site and source repository are linked. |
 | Include obstacles and how they were resolved | Complete in draft | The article describes the repository mismatch, the live `/api/site-config` check, the framework-owned warning, and why generated runtime files were not patched locally. | Each obstacle includes the decision or resolution, not just the problem. |
 | Keep the submission small and focused | Complete | The public site has three purposeful pages and one reader journey. | We avoided padding the site with empty sections or a broad feature catalogue. |
-| Demonstrate technical accuracy | Complete, with final manual check recommended | Product claims link to Cursor's official documentation. The docs check, tests, build, and live navigation review passed. | Follow the quickstart once in the current Cursor app and add the workflow screenshots before submission if time allows. |
+| Demonstrate technical accuracy | Complete | Product claims link to Cursor's official documentation. The docs check, tests, build, live navigation review, and signed-in Cursor workflow passed. | The guide includes real evidence from Cursor Agent, a project rule, and a reviewed red and green diff. |
 | Demonstrate clear explanations and working instructions | Complete | Pages lead with outcomes, address the reader directly, use ordered steps, and show what success looks like. | Read the final article aloud once after publishing. |
 | Provide developer experience feedback and honest criticism | Complete in draft | The article includes **What worked well**, **Where I encountered friction**, and **What I would improve**. | Include the short note below in the submission email. |
 
-### Honest feedback note for the submission email
+### Three observations for the submission email
 
-Thally gave me a strong docs-as-code starting point, useful validation, and a simple path from GitHub to a live documentation site. The main friction was understanding which repository and revision the live site was publishing, especially when I had another similarly named repository. Making the connected repository, branch, live commit, and branding precedence more visible in the Cloud dashboard would make verification faster. I found the tool useful because it kept content, navigation, validation, deployment, search, and agent-facing documentation surfaces connected to one source.
+- **What worked well:** Thally gave me a strong docs-as-code starting point, useful validation, and a simple path from GitHub to a live documentation site.
+- **Where I encountered friction:** I initially misunderstood which similarly named repository and revision the live site was publishing. Checking the live site configuration and deployment details helped me identify the correct source.
+- **What I would improve:** I would make the connected repository, production branch, live commit, and branding precedence more prominent in the Cloud dashboard so maintainers can verify a deployment faster.
 
 ### Completion summary
 
@@ -170,7 +172,7 @@ Every screenshot needs useful alt text and a caption that explains why the reade
 
 | Screenshot | Location | Status | Purpose |
 | --- | --- | --- | --- |
-| Cursor Agent from official docs | Introduction and article | Added | Shows the product being documented |
+| Cursor Agent from official docs | Article | Added | Records the visual reference used during branding research |
 | Thally Cloud site overview | Article | Added | Proves the site deployed and records the readiness score |
 | Thally docs-source selection | Article | Added | Shows how to create a repository from the maintained Thally template |
 | GitHub authorization | Article | Added | Shows the account-selection step for connecting Thally's GitHub App |
@@ -182,7 +184,7 @@ Every screenshot needs useful alt text and a caption that explains why the reade
 | Agent explanation prompt | Quickstart and article | Added | Shows the first prompt and evidence-based response |
 | Rule verification in Cursor | Introduction, quickstart, project-rules guide, and article | Added | Shows a scoped prompt, the matching rule, red and green changes, and review controls |
 | `.cursor/rules/documentation.mdc` | Project-rules guide and article | Added | Shows the rule, file patterns, and repository location |
-| Thally deployment with commit SHA | Article | Needed after deployment | Proves the exact revision that went live |
+| Thally deployment details | Article | Added | Shows the production repository, `main` branch, healthy site, and successful status |
 
 Do not use decorative screenshots. Each image should explain a step, confirm a result, or help the reader recognise the correct UI.
 
@@ -287,7 +289,7 @@ The current design is already strong enough for the assessment. It is focused, r
 
 Recommended next improvements:
 
-1. Add the six real Cursor workflow screenshots above. This is the highest-value improvement because readers can compare each instruction with the product UI.
+1. Keep the real Cursor workflow screenshots current when the product interface changes.
 2. Add a short **What you will accomplish** checklist near the start of the quickstart so the finish line is visible before the steps.
 3. Add one downloadable example rule or link to the exact example file in GitHub. This turns a code sample into something readers can reuse.
 4. Add a small **Tested with** note containing the Cursor version and date. Cursor changes quickly, so this gives readers useful freshness context.
@@ -298,9 +300,9 @@ Implementation status:
 - The **What you will accomplish** checklist has been added to the quickstart.
 - A reusable example rule is available at `/examples/documentation.mdc` and linked from the practical guide.
 - A changelog was intentionally not added because this focused assessment does not yet have an ongoing release history.
-- The remaining high-value improvement is adding screenshots from a signed-in Cursor workflow.
+- Signed-in Cursor workflow screenshots now show the explanation prompt, project rule, proposed red and green diff, and review controls.
 
-Cursor Desktop is available locally and the public assessment repository can be opened safely for screenshots. Agent workflow screenshots require a signed-in Cursor session. Do not stage a fake response for the guide. Capture the real prompt, response, diff, and validation result after signing in and completing the quickstart once.
+The Cursor workflow was completed in a signed-in desktop session using the public assessment repository. The guide uses the real prompt, response, project rule, proposed diff, and review controls rather than a staged response.
 
 Font recommendation: keep Inter for body and headings. It is readable, loads reliably, and lets the content lead. JetBrains Mono or another monospaced font would work well for code and small metadata, but using a monospaced font for all prose would make the task guides slower to read. Cursor Sans and Berkeley Mono should not be copied because they are not distributed with this project.
 
