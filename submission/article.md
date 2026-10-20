@@ -229,10 +229,10 @@ The guide does not stop at a copied code sample. It shows the rule inside Cursor
   <figcaption>The rule keeps durable documentation standards in the repository, where every contributor can review them.</figcaption>
 </figure>
 
-I then tested the rule with a matching documentation file. Cursor identified the relevant instructions, limited the task to one file, and left the proposed change for review.
+I then tested the rule with a disposable practice page instead of changing published documentation. Cursor identified the relevant instructions, limited the task to that one file, and left the proposed change for review. I removed the practice page after the test because it existed only to verify the rule safely.
 
 <figure>
-  <img src="https://cursor.thally.app/images/cursor/workflow/cursor-rule-diff.png" alt="Cursor Agent receiving a focused request to apply the documentation project rule" />
+  <img src="https://cursor.thally.app/images/cursor/workflow/cursor-review-flow.png" alt="Cursor Agent applying the documentation project rule and showing a red and green proposed diff" />
   <figcaption>A focused verification prompt checks that the rule applies before a maintainer accepts the change.</figcaption>
 </figure>
 

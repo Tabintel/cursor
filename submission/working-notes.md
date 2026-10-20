@@ -177,7 +177,7 @@ Every screenshot needs useful alt text and a caption that explains why the reade
 | Cursor Guide project-rule page | Article | Added | Shows the practical example and code presentation |
 | Cursor Guide homepage, light mode | Article | Optional | Shows the finished light palette |
 | Agent explanation prompt | Quickstart and article | Added | Shows the first prompt and evidence-based response |
-| Rule verification in Cursor | Project-rules guide and article | Added | Shows a scoped prompt, the matching rule, and review controls |
+| Rule verification in Cursor | Introduction, quickstart, project-rules guide, and article | Added | Shows a scoped prompt, the matching rule, red and green changes, and review controls |
 | `.cursor/rules/documentation.mdc` | Project-rules guide and article | Added | Shows the rule, file patterns, and repository location |
 | Thally deployment with commit SHA | Article | Needed after deployment | Proves the exact revision that went live |
 
@@ -254,6 +254,10 @@ Open a matching documentation file, ask Agent to apply the rule, and capture the
 Add it after **Verify the rule**. Caption it: “Verify that Agent applies the rule to a matching documentation file.”
 
 Completed with `cursor-rule-diff.png`. Cursor received a scoped request for a matching documentation file, recognised the project instructions, changed only the temporary practice file, and left the result behind review controls. The temporary file was removed after the screenshot.
+
+The final reader-facing version is `cursor-review-flow.png`. It follows the information hierarchy used in Cursor's official product image while showing this project's genuine prompt, project rule, red and green diff, file tree, and review controls.
+
+The temporary practice file was a disposable Markdown page created only to test the rule without changing published documentation. It was never part of the guide and was deleted before the screenshot work was committed.
 
 The project-rule screenshot is saved as `cursor-project-rule.png`. It shows `.cursor/rules/documentation.mdc`, its matching file patterns, and the first documentation standards in the editor.
 
