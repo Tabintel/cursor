@@ -99,6 +99,22 @@ After this quickstart, you will have used Cursor Agent to make and verify one sm
   <figcaption>I followed the quickstart in Cursor and confirmed that Agent grounded its explanation in the repository instead of editing files.</figcaption>
 </figure>
 
+### Add screenshots with borders and captions
+
+I saved documentation images under `public/images/`, then referenced them from MDX with a root-relative path. Thally's `Frame` component adds the border, caption area, and click-to-zoom behaviour, so I did not need custom image components or page-level CSS.
+
+```mdx
+<Frame caption="Review every changed line before keeping the result.">
+  <img
+    className="aspect-video w-full bg-background object-contain"
+    src="/images/cursor/workflow/cursor-review-flow.png"
+    alt="Cursor Agent showing a focused request and a proposed diff"
+  />
+</Frame>
+```
+
+The `aspect-video` class gives the screenshots a consistent 16:9 presentation. `object-contain` keeps the full interface visible, while `w-full` uses the available content width. The caption explains what the reader should notice, and the alt text describes the useful information in the image.
+
 ## 4. Configure the navigation
 
 I kept the public navigation short and task-based in `docs.json`:

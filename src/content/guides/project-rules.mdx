@@ -34,7 +34,7 @@ You can also [download the example rule](/examples/documentation.mdc) and copy i
 
 <Frame caption="Store durable documentation instructions in a version-controlled project rule.">
   <img
-    className="h-auto w-full"
+    className="aspect-video w-full bg-background object-contain"
     src="/images/cursor/workflow/cursor-project-rule.png"
     alt="Cursor editor showing a documentation project rule and its matching file patterns"
   />
@@ -53,7 +53,7 @@ Review the response and diff. The revised text should address the reader directl
 
 <Frame caption="Ask Cursor to identify the matching rule, make one focused change, and leave the result for your review.">
   <img
-    className="h-auto w-full"
+    className="aspect-video w-full bg-background object-contain"
     src="/images/cursor/workflow/cursor-review-flow.png"
     alt="Cursor Agent applying the documentation project rule and showing a red and green proposed diff"
   />
@@ -84,5 +84,9 @@ Check for User Rules, other project rules, and `AGENTS.md` files with overlappin
 ## What success looks like
 
 Agent identifies the rule, applies it to matching documentation files, and leaves files outside the rule's scope unchanged.
+
+<Note type="check" title="You have verified the rule">
+  The response names the documentation rule, the proposed diff follows its instructions, and no file outside the matching pattern changes.
+</Note>
 
 Read the [official Cursor rules documentation](https://cursor.com/docs/rules) for other rule types and activation options.
