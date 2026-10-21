@@ -312,11 +312,15 @@ I corrected the workflow by treating the live site configuration as the source o
 
 During local development, the preview logged a Next.js `searchParams` warning from a framework-owned route even though the pages loaded, the tests passed, and the production build succeeded. I recorded it instead of changing generated runtime code in the customer repository.
 
+The built-in Hero also limits its title to `17ch`, which caused a short homepage heading to wrap on a wide screen. I used the customer-owned MDX component layer to adjust the desktop width while preserving natural wrapping on smaller screens. This kept the change separate from Thally's runtime-owned files.
+
 ## What I would improve
 
 I would make the selected repository, branch, and deployed commit more prominent on the site overview. A visible comparison between the live commit and the latest branch commit would make stale deployments easier to recognise.
 
 I would also surface source-controlled branding values beside managed overrides. That would help maintainers understand which value wins before starting another deployment.
+
+I would make common Hero layout controls, such as heading width and desktop wrapping, configurable through `docs.json`. That would cover simple branding needs without requiring a customer-owned component override.
 
 ## Final result
 

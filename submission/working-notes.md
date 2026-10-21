@@ -374,6 +374,7 @@ We did not patch the generated runtime code in the customer repository. Runtime 
 - Show managed branding overrides beside source-controlled defaults.
 - Make stale deployment detection visible without requiring an API check.
 - Remove the local `searchParams` warning in a future runtime update.
+- Make common Hero controls, including heading width and desktop wrapping, configurable through `docs.json`. The default `17ch` limit wrapped our short title on desktop, so we used the customer-owned component layer instead of editing runtime files.
 
 ## Article location
 
