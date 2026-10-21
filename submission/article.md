@@ -359,13 +359,12 @@ We initially prepared the content in a second repository because we misunderstoo
 
 We corrected the workflow by treating the deployment information as the source of truth, cloning `Tabintel/cursor`, and applying our pages, navigation, identity, and brand assets there. The lesson is simple: before publishing, confirm the connected repository, production branch, and deployed commit instead of relying on a repository name that looks correct.
 
-## Final result
+## Next steps
 
-The finished project is intentionally small. It gives a new Cursor user a clear path from opening a project to making a reviewed change and adding reusable project guidance.
+Now we have built and published a documentation site with Thally. We started with a simple idea, turned it into three focused pages, added Cursor-inspired branding, tested the instructions, and published the guide.
 
-Thally provides the structure around that journey: version-controlled content, navigation, validation, publishing, search, and agent-ready documentation surfaces.
+You can explore the [Cursor Guide](https://cursor.thally.app/), make updates to the documentation, or use the [source repository](https://github.com/Tabintel/cursor) as a reference for your own project.
 
-- Live site: [cursor.thally.app](https://cursor.thally.app/)
-- Source: [github.com/Tabintel/cursor](https://github.com/Tabintel/cursor)
+If you have a product or developer tool you want to document, try [Thally](https://thally.io/) and build your own documentation site. Start small, choose one useful outcome for your reader, and grow the guide as you learn what they need.
 
 Cursor names, marks, and visual references belong to Cursor and Anysphere. This project uses them only to identify the documented product and remains an independent guide.
