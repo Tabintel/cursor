@@ -28,6 +28,7 @@
 /.data/
 /.thally/
 /.dox/
+/submission/
 
 # Environment and deployment credentials
 .env*
