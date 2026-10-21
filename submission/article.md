@@ -89,6 +89,7 @@ For example, the quickstart begins with the result instead of a long product des
 ---
 title: Make your first reviewed change
 description: Use Cursor Agent to understand a project, make one focused change, review the diff, and verify the result.
+mode: wide
 ---
 
 After this quickstart, you will have used Cursor Agent to make and verify one small change in a project you control.
@@ -106,14 +107,32 @@ I saved documentation images under `public/images/`, then referenced them from M
 ```mdx
 <Frame caption="Review every changed line before keeping the result.">
   <img
-    className="aspect-video w-full bg-background object-contain"
+    className="aspect-video w-full bg-background object-cover object-top"
     src="/images/cursor/workflow/cursor-review-flow.png"
     alt="Cursor Agent showing a focused request and a proposed diff"
   />
 </Frame>
 ```
 
-The `aspect-video` class gives the screenshots a consistent 16:9 presentation. `object-contain` keeps the full interface visible, while `w-full` uses the available content width. The caption explains what the reader should notice, and the alt text describes the useful information in the image.
+The `aspect-video` class gives every screenshot the same 16:9 presentation. `object-cover object-top` fills that area and keeps Cursor's title bar and primary controls visible. `w-full` uses the available content width. The caption explains what the reader should notice, and the alt text describes the useful information in the image.
+
+This approach can crop the bottom of a taller source image. Use `object-contain` instead when every part of the interface must remain visible, but expect empty space when source images have different proportions.
+
+Screenshots inside Thally's numbered `<Step>` component inherit the Step's indented content width. For a wide task page, I used a small responsive breakout around each Step screenshot:
+
+```mdx
+<div className="md:-ml-[50px] md:w-[calc(100%+50px)]">
+  <Frame caption="Cursor Agent explains the project and cites the files behind its answer.">
+    <img
+      className="aspect-video w-full bg-background object-cover object-top"
+      src="/images/cursor/workflow/cursor-agent-explanation.png"
+      alt="Cursor Agent answering an evidence-based project explanation prompt"
+    />
+  </Frame>
+</div>
+```
+
+The breakout applies only from the medium breakpoint, so the screenshot keeps its normal responsive width on smaller screens. The `mode: wide` frontmatter removes the right-side contents rail, while normal paragraphs remain constrained by Thally's prose styles.
 
 ## 4. Configure the navigation
 
@@ -192,6 +211,30 @@ I selected the `sharp` structural theme because its tight `4px` corners are clos
   }
 }
 ```
+
+### Keep site-specific layout changes customer-owned
+
+Thally's built-in Hero limits headings to `17ch`. That default made the short homepage title wrap even when a wide desktop had enough room.
+
+I did not edit the built-in Hero because `src/components/` is runtime-owned. Instead, I registered a site-specific Hero override in `src/mdx/custom-components.tsx`, which the starter explicitly reserves for customer components:
+
+```tsx
+export const customComponents: MDXComponents = {
+  Hero: CursorHero,
+}
+```
+
+The custom Hero removes the narrow title limit and uses `xl:whitespace-nowrap` only at large desktop widths. Smaller screens still wrap naturally.
+
+Use the same ownership check before any customization:
+
+| Change | Correct source |
+| --- | --- |
+| Pages and frontmatter | `src/content/` |
+| Navigation, theme, fonts, logo paths | `docs.json` |
+| Site identity and versioned colour defaults | `src/data/site.ts` |
+| Site-specific MDX components | `src/mdx/custom-components.tsx` |
+| Thally runtime behaviour | Upstream Thally runtime, not a local hand edit |
 
 ## 7. Add the Cursor mark
 
@@ -302,7 +345,7 @@ This verification matters. A successful deployment message does not prove that t
 
 ## What worked well
 
-Thally gave the project a clear docs-as-code structure, a managed deployment path, built-in validation, and agent-facing surfaces from the same content source. The MDX components also made the quickstart easy to scan without adding custom application code.
+Thally gave the project a clear docs-as-code structure, a managed deployment path, built-in validation, and agent-facing surfaces from the same content source. Its MDX components made the quickstart easy to scan, and the customer-owned component layer gave me a safe place for one site-specific Hero refinement.
 
 ## Where I encountered friction
 
