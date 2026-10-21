@@ -1,12 +1,22 @@
-# How I built and branded a Cursor guide with Thally
+# How we built and branded a Cursor guide with Thally
 
-I wanted to build a small documentation site that another developer could actually finish.
+Think of documentation as the manual that comes with a car. It helps software engineers understand a tool and use it properly.
 
-The result is **Cursor Guide**, an independent guide for developers who are new to Cursor. It explains what Cursor is, helps a reader make and review one focused change, and shows how to add a reusable project rule.
+Whenever I try a new developer tool, the documentation is usually my first stop. After that, I check YouTube videos or articles. If you look closely, many tools with growing developer adoption also have helpful documentation.
 
-I built and published the site with Thally. This article walks through the complete process, including the decisions, configuration, validation, deployment, and branding work.
+In this article, we will build a documentation site with [Thally](https://thally.io/). The site will teach developers how to make and review changes with Cursor.
 
-## What I built
+> **Note:** The **Cursor Guide** is an independent guide and is not affiliated with the official [Cursor documentation](https://cursor.com/docs). We created it for this article to explore how to build and publish a focused documentation site.
+
+The guide explains what Cursor is, helps a reader make and review one focused change, and shows how to add a reusable project rule.
+
+**Let's get started!**
+
+[Thally](https://thally.io/) is a platform for creating product and developer-tool documentation. If you're familiar with tools such as [Mintlify](https://www.mintlify.com/) or [Docusaurus](https://docusaurus.io/), you already have an idea of how it works.
+
+If not, don't worry. It is quite easy to set up. 🙂
+
+## What we're building
 
 The guide has three public pages:
 
@@ -14,7 +24,7 @@ The guide has three public pages:
 2. A quickstart for understanding a project and making a reviewed change.
 3. A practical guide for creating and troubleshooting a project rule.
 
-I kept the scope small because the goal was not to list every Cursor feature. The goal was to help a new user complete one useful workflow without guessing.
+We kept the scope small because the goal was not to list every Cursor feature. We wanted to help a new user complete one useful workflow without guessing.
 
 <figure>
   <img src="https://cursor.thally.app/images/article/cursor-guide-homepage.png" alt="Cursor Guide homepage in dark mode with task-based navigation and buttons for the quickstart and project-rule guide" />
@@ -33,7 +43,7 @@ To follow the same process, you need:
 
 ## 1. Plan the reader journey
 
-Before creating the site, I wrote one outcome:
+Before creating the site, we wrote one outcome:
 
 > A developer should be able to use Cursor to understand a project, make a focused change, review the diff, and verify the result.
 
@@ -41,14 +51,14 @@ That outcome shaped the navigation. The introduction provides context, the quick
 
 ## 2. Create the repository and Thally site
 
-I created the site in Thally Cloud and chose **Create a new docs repository**. This option creates a repository from Thally's maintained template and connects it to the deployment workflow.
+We created the site in Thally Cloud and chose **Create a new docs repository**. This option creates a repository from Thally's maintained template and connects it to the deployment workflow.
 
 <figure>
   <img src="https://cursor.thally.app/images/article/thally-choose-docs-source.png" alt="Thally Cloud Docs source step with Create a new docs repository selected and the GitHub connection controls visible" />
-  <figcaption>Choose where the documentation will live. I selected a new repository so Thally could create it from the maintained template.</figcaption>
+  <figcaption>Choose where the documentation will live. We selected a new repository so Thally could create it from the maintained template.</figcaption>
 </figure>
 
-I selected **Check GitHub**, then authorized Thally Labs to use the GitHub account that would own the documentation repository. Only connect an account where you have permission to create and manage the project.
+We selected **Check GitHub**, then authorized Thally Labs to use the GitHub account that would own the documentation repository. Only connect an account where you have permission to create and manage the project.
 
 <figure>
   <img src="https://cursor.thally.app/images/article/thally-authorize-github.png" alt="GitHub authorization screen asking which account should authorize Thally Labs" />
@@ -57,7 +67,7 @@ I selected **Check GitHub**, then authorized Thally Labs to use the GitHub accou
 
 Thally created `Tabintel/cursor` from its current starter, connected `main` as the production branch, and published the first deployment at [cursor.thally.app](https://cursor.thally.app/).
 
-I then cloned the generated repository locally:
+We then cloned the generated repository locally:
 
 ```bash
 git clone https://github.com/Tabintel/cursor.git
@@ -71,7 +81,7 @@ cd cursor
 
 ## 3. Replace the starter content
 
-Thally stores pages under `src/content/`. I replaced the demo pages with:
+Thally stores pages under `src/content/`. We replaced the demo pages with:
 
 ```text
 src/content/
@@ -97,12 +107,12 @@ After this quickstart, you will have used Cursor Agent to make and verify one sm
 
 <figure>
   <img src="https://cursor.thally.app/images/cursor/workflow/cursor-agent-explanation.png" alt="Cursor Agent answering a project explanation prompt with the files a new contributor should read first" />
-  <figcaption>I followed the quickstart in Cursor and confirmed that Agent grounded its explanation in the repository instead of editing files.</figcaption>
+  <figcaption>We followed the quickstart in Cursor and confirmed that Agent grounded its explanation in the repository instead of editing files.</figcaption>
 </figure>
 
 ### Add screenshots with borders and captions
 
-I saved documentation images under `public/images/`, then referenced them from MDX with a root-relative path. Thally's `Frame` component adds the border, caption area, and click-to-zoom behaviour, so I did not need custom image components or page-level CSS.
+We saved documentation images under `public/images/`, then referenced them from MDX with a root-relative path. Thally's `Frame` component adds the border, caption area, and click-to-zoom behaviour, so we did not need custom image components or page-level CSS.
 
 ```mdx
 <Frame caption="Review every changed line before keeping the result.">
@@ -118,7 +128,7 @@ The `aspect-video` class gives every screenshot the same 16:9 presentation. `obj
 
 This approach can crop the bottom of a taller source image. Use `object-contain` instead when every part of the interface must remain visible, but expect empty space when source images have different proportions.
 
-Screenshots inside Thally's numbered `<Step>` component inherit the Step's indented content width. For a wide task page, I used a small responsive breakout around each Step screenshot:
+Screenshots inside Thally's numbered `<Step>` component inherit the Step's indented content width. For a wide task page, we used a small responsive breakout around each Step screenshot:
 
 ```mdx
 <div className="md:-ml-[50px] md:w-[calc(100%+50px)]">
@@ -136,7 +146,7 @@ The breakout applies only from the medium breakpoint, so the screenshot keeps it
 
 ## 4. Configure the navigation
 
-I kept the public navigation short and task-based in `docs.json`:
+We kept the public navigation short and task-based in `docs.json`:
 
 ```json
 {
@@ -167,14 +177,14 @@ This gives the reader one obvious path through the site.
 
 ## 5. Study Cursor's visual language
 
-I did not want to guess what a Cursor-inspired site should look like, so I inspected the current [Cursor documentation](https://cursor.com/docs).
+We did not want to guess what a Cursor-inspired site should look like, so we inspected the current [Cursor documentation](https://cursor.com/docs).
 
 <figure>
   <img src="https://cursor.thally.app/images/cursor/agent-homepage.png" alt="Cursor Agent open beside a codebase in the official Cursor documentation" />
-  <figcaption>The official Cursor documentation gave me a product reference and a visual direction for the independent guide.</figcaption>
+  <figcaption>The official Cursor documentation gave us a product reference and a visual direction for the independent guide.</figcaption>
 </figure>
 
-The public site uses warm neutral colours, tight corners, restrained borders, and a simple sans-serif reading font. The main colours I recorded were:
+The public site uses warm neutral colours, tight corners, restrained borders, and a simple sans-serif reading font. These are the main colours we recorded:
 
 | Purpose | Light mode | Dark mode |
 | --- | --- | --- |
@@ -183,13 +193,13 @@ The public site uses warm neutral colours, tight corners, restrained borders, an
 | Card surface | `#FFFFFF` | `#1B1913` |
 | Border | `#D9D8D2` | `#2A2822` |
 
-Cursor uses its own Cursor Sans and Berkeley Mono fonts. Those fonts are not part of this project, so I did not copy them. I used Inter for reading text and kept the Thally code font. This preserves the same clear, technical feeling without redistributing Cursor's private font files.
+Cursor uses its own Cursor Sans and Berkeley Mono fonts. Those fonts are not part of this project, so we did not copy them. We used Inter for reading text and kept the Thally code font. This preserves the same clear, technical feeling without redistributing Cursor's private font files.
 
 ## 6. Apply the structural theme and fonts
 
 Thally supports branding through `docs.json`, `src/data/site.ts`, and the managed Branding settings.
 
-I selected the `sharp` structural theme because its tight `4px` corners are closest to Cursor's current interface. I also configured the reading font and retained the theme toggle:
+We selected the `sharp` structural theme because its tight `4px` corners are closest to Cursor's current interface. We also configured the reading font and retained the theme toggle:
 
 ```json
 {
@@ -216,7 +226,7 @@ I selected the `sharp` structural theme because its tight `4px` corners are clos
 
 Thally's built-in Hero limits headings to `17ch`. That default made the short homepage title wrap even when a wide desktop had enough room.
 
-I did not edit the built-in Hero because `src/components/` is runtime-owned. Instead, I registered a site-specific Hero override in `src/mdx/custom-components.tsx`, which the starter explicitly reserves for customer components:
+We did not edit the built-in Hero because `src/components/` is runtime-owned. Instead, we registered a site-specific Hero override in `src/mdx/custom-components.tsx`, which the starter explicitly reserves for customer components:
 
 ```tsx
 export const customComponents: MDXComponents = {
@@ -238,7 +248,7 @@ Use the same ownership check before any customization:
 
 ## 7. Add the Cursor mark
 
-I downloaded the light and dark Cursor marks from Cursor's public documentation assets and stored them in `public/brand/`:
+We downloaded the light and dark Cursor marks from Cursor's public documentation assets and stored them in `public/brand/`:
 
 ```text
 public/brand/
@@ -246,7 +256,7 @@ public/brand/
   cursor-dark.svg
 ```
 
-Then I added source-controlled logo and favicon fallbacks in `docs.json`:
+Then we added source-controlled logo and favicon fallbacks in `docs.json`:
 
 ```json
 {
@@ -268,7 +278,7 @@ The site remains clearly labelled as an independent guide. The introduction and 
 
 ## 8. Define the light and dark palettes
 
-I updated the version-controlled brand palette in `src/data/site.ts`. The dark configuration looks like this:
+We updated the version-controlled brand palette in `src/data/site.ts`. The dark configuration looks like this:
 
 ```ts
 dark: {
@@ -288,7 +298,7 @@ dark: {
 }
 ```
 
-I used neutral accent colours because Cursor's documentation does not rely on a bright brand colour for every active state.
+We used neutral accent colours because Cursor's documentation does not rely on a bright brand colour for every active state.
 
 <figure>
   <img src="https://cursor.thally.app/images/article/cursor-guide-project-rule.png" alt="Published Cursor Guide page showing how to create a reusable Cursor project rule" />
@@ -302,7 +312,7 @@ The guide does not stop at a copied code sample. It shows the rule inside Cursor
   <figcaption>The rule keeps durable documentation standards in the repository, where every contributor can review them.</figcaption>
 </figure>
 
-I then tested the rule with a disposable practice page instead of changing published documentation. Cursor identified the relevant instructions, limited the task to that one file, and left the proposed change for review. I removed the practice page after the test because it existed only to verify the rule safely.
+We then tested the rule with a disposable practice page instead of changing published documentation. Cursor identified the relevant instructions, limited the task to that one file, and left the proposed change for review. We removed the practice page after the test because it existed only to verify the rule safely.
 
 <figure>
   <img src="https://cursor.thally.app/images/cursor/workflow/cursor-review-flow.png" alt="Cursor Agent applying the documentation project rule and showing a red and green proposed diff" />
@@ -311,7 +321,7 @@ I then tested the rule with a disposable practice page instead of changing publi
 
 ## 9. Validate the site
 
-Before publishing, I ran the checks required by the repository:
+Before publishing, we ran the checks required by the repository:
 
 ```bash
 npm ci --ignore-scripts --prefix .github/thally-tooling
@@ -322,17 +332,17 @@ npm run build
 
 The content check completed with no errors or warnings. All 1,673 tests passed, and the production build completed successfully.
 
-I also opened the local preview and reviewed the homepage, quickstart, navigation, code blocks, internal links, and theme behaviour. On the published site, I followed both homepage calls to action and checked the sidebar, page navigation, footer, and external references.
+We also opened the local preview and reviewed the homepage, quickstart, navigation, code blocks, internal links, and theme behaviour. On the published site, we followed both homepage calls to action and checked the sidebar, page navigation, footer, and external references.
 
 The sidebar labels **Start here** and **Practical guides** organise the pages below them. They are section headings rather than links, so selecting them does not open a page. The actual page links and calls to action navigate correctly.
 
 ## 10. Publish and verify the exact revision
 
-I committed the reviewed files and pushed them to the production branch. A push to the connected branch should create a new managed deployment in Thally Cloud.
+We committed the reviewed files and pushed them to the production branch. A push to the connected branch should create a new managed deployment in Thally Cloud.
 
-After publishing, I check three things:
+After publishing, we checked three things:
 
-1. The deployment commit matches the commit I pushed.
+1. The deployment commit matches the commit we pushed.
 2. The homepage contains the Cursor Guide content instead of the starter pages.
 3. The live site uses the expected colours, logo, navigation, and page links in both themes.
 
@@ -343,27 +353,11 @@ This verification matters. A successful deployment message does not prove that t
   <figcaption>The deployment details confirm the live site, connected repository, production branch, successful status, and build duration.</figcaption>
 </figure>
 
-## What worked well
+### An obstacle we solved while publishing
 
-Thally gave the project a clear docs-as-code structure, a managed deployment path, built-in validation, and agent-facing surfaces from the same content source. Its MDX components made the quickstart easy to scan, and the customer-owned component layer gave me a safe place for one site-specific Hero refinement.
+We initially prepared the content in a second repository because we misunderstood which repository the live site was publishing. To confirm the source, we checked the deployment details and the live site's `/api/site-config` response. Thally was publishing `Tabintel/cursor`, while our changes were in `Tabintel/cursor-guides`.
 
-## Where I encountered friction
-
-I initially prepared the content in a second repository because I misunderstood which repository the live site was publishing. Checking the live site's `/api/site-config` response exposed the mismatch: Thally was correctly publishing `Tabintel/cursor`, while my changes were in `Tabintel/cursor-guides`.
-
-I corrected the workflow by treating the live site configuration as the source of truth, cloning `Tabintel/cursor`, and applying only the authored pages, navigation, identity, and brand assets there. That avoided changing Thally's generated runtime files.
-
-During local development, the preview logged a Next.js `searchParams` warning from a framework-owned route even though the pages loaded, the tests passed, and the production build succeeded. I recorded it instead of changing generated runtime code in the customer repository.
-
-The built-in Hero also limits its title to `17ch`, which caused a short homepage heading to wrap on a wide screen. I used the customer-owned MDX component layer to adjust the desktop width while preserving natural wrapping on smaller screens. This kept the change separate from Thally's runtime-owned files.
-
-## What I would improve
-
-I would make the selected repository, branch, and deployed commit more prominent on the site overview. A visible comparison between the live commit and the latest branch commit would make stale deployments easier to recognise.
-
-I would also surface source-controlled branding values beside managed overrides. That would help maintainers understand which value wins before starting another deployment.
-
-I would make common Hero layout controls, such as heading width and desktop wrapping, configurable through `docs.json`. That would cover simple branding needs without requiring a customer-owned component override.
+We corrected the workflow by treating the deployment information as the source of truth, cloning `Tabintel/cursor`, and applying our pages, navigation, identity, and brand assets there. The lesson is simple: before publishing, confirm the connected repository, production branch, and deployed commit instead of relying on a repository name that looks correct.
 
 ## Final result
 
