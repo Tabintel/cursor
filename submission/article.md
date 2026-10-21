@@ -51,7 +51,9 @@ This made it easier to decide what belonged in the guide. The introduction expla
 
 ## 2. Create the site with Thally
 
-We opened Thally Cloud and chose **Create a new docs repository**. Thally then created a GitHub repository from its maintained template and connected it to the publishing workflow.
+First, sign up at [Thally.io](https://thally.io/) to access Thally Cloud.
+
+After signing in, select **Create a new docs repository**. Thally will create a GitHub repository from its maintained template and connect it to the publishing workflow.
 
 <figure>
   <img src="https://cursor.thally.app/images/article/thally-choose-docs-source.png" alt="Thally Cloud Docs source step with Create a new docs repository selected and the GitHub connection controls visible" />
