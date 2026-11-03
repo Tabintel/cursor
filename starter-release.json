@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "starterVersion": 2,
+  "starterVersion": 3,
   "repository": "thallylabs/starter",
   "defaultBranch": "main",
   "runtime": {
     "repository": "thallylabs/thally",
-    "commitSha": "6184037a97e007962e569d51b52d95829f3b29db",
-    "treeSha": "05622ff5fd9dcaf4bfca3b8dc0eb2ff68c94a08d"
+    "commitSha": "96f29a21f73145b02c883e9a51ee15b1610d270b",
+    "treeSha": "83c3ea5b90daec74e4ccf7f30fbf1ec0fd8027d2"
   },
   "packages": {
-    "@thallylabs/core": "^0.2.16"
+    "@thallylabs/core": "^0.2.18"
   },
   "ownership": {
     "frameworkSyncEligible": [
@@ -27,6 +27,8 @@
       "src/mdx/rehype.test.ts",
       "src/mdx/__tests__/test-html.ts",
       "src/mdx/remark.ts",
+      "src/mdx/smart-quotes.ts",
+      "src/mdx/smart-quotes.test.ts",
       "src/mdx/snippet-registry.ts",
       "src/styles/**",
       "src/test/**",
