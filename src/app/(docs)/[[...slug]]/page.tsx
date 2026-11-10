@@ -19,7 +19,7 @@ import { LocalizedSidebarHydrator } from '@/components/layout/localized-sidebar-
 import { LocaleAvailabilityHydrator } from '@/components/layout/locale-availability'
 import { JsonLdScript } from '@/components/seo/json-ld-script'
 import { lookupApiOperationForFrontmatter } from '@/data/api-reference'
-import { ensureDocPublication, getApiPlaygroundDisplay, getDocEntries, getEyebrowMode, getSeoConfig, isDocPublished, loadNavContext } from '@/data/docs'
+import { ensureDocPublication, getApiPlaygroundDisplay, getDocEntries, getEyebrowMode, getNotFoundRedirect, getSeoConfig, isDocPublished, loadNavContext } from '@/data/docs'
 import { getDocFromParams } from '@/data/get-doc'
 import { loadRootDocumentRedirect } from '@/lib/document-root-redirect'
 import { hasDocTranslation } from '@/lib/i18n/translation-source'
@@ -34,6 +34,8 @@ import {
   getEffectiveI18nConfig,
   getRepositoryI18nConfig,
 } from '@/lib/i18n/request'
+import { plainInlineText } from '@/lib/inline-code'
+import { markdownToPlainText } from '@thallylabs/core/content'
 import { buildDocPageJsonLd } from '@/lib/json-ld'
 import { pageFullTitle } from '@/lib/page-meta'
 import { buildOgImageUrl, formatOgBreadcrumb, formatOgDisplayUrl } from '@/lib/og'
@@ -82,6 +84,20 @@ export async function generateStaticParams() {
   ]
 }
 
+/**
+ * The description a page's tags and structured data carry, as plain text. The
+ * header renders a code span in the page's own description as code; tags read
+ * its text. A page bound to an OpenAPI operation with no description of its own
+ * shows the operation's description on the page, so its tags carry that, as one
+ * plain line (the description is Markdown).
+ */
+async function tagDescription(doc: { description: string; openapi?: Parameters<typeof lookupApiOperationForFrontmatter>[0] }): Promise<string> {
+  if (doc.description) return plainInlineText(doc.description)
+  if (!doc.openapi) return ''
+  const { node } = await lookupApiOperationForFrontmatter(doc.openapi)
+  return markdownToPlainText(node?.operation.description ?? '')
+}
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const routeParams = await params
   const buildI18n = await getEffectiveI18nConfig()
@@ -91,7 +107,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     route.isLocaleRoute ? route.locale : undefined,
   )
   if (!doc) return {}
-  // The page 404s when its documented operation is hidden or excluded; give it no title, canonical or social preview.
+  // The page 404s when its documented operation is excluded; give it no title, canonical or social preview.
   await ensureDocPublication()
   if (!isDocPublished(doc.id, route.isLocaleRoute ? route.locale : undefined)) return {}
   // A page this reader may not see gets no title, description or preview image.
@@ -107,9 +123,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const canonicalHref = hasTranslation ? requestedHref : primaryHref
   const availableI18n = await getContentI18nConfig(route.docSlug, buildI18n)
   const nav = await loadNavContext(doc.id, route.isLocaleRoute ? route.locale : undefined, reader)
+  const description = await tagDescription(doc)
   const ogImageUrl = buildOgImageUrl({
     title: doc.title,
-    description: doc.description,
+    description,
     crumb: formatOgBreadcrumb(nav.breadcrumb, doc.title, doc.group),
     url: formatOgDisplayUrl(canonicalHref, siteUrl),
   })
@@ -122,11 +139,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     separator: getSeoConfig().titleSeparator,
   })
   const socialTitle = fullTitle ?? doc.title
-  const socialDescription = doc.ogDescription ?? doc.description
+  const socialDescription = doc.ogDescription ?? description
 
   return {
     title: fullTitle ? { absolute: fullTitle } : doc.title,
-    description: doc.description,
+    description,
     ...(isNoindex
       ? { robots: { index: false, follow: !doc.noindex && !doc.hidden } }
       : {}),
@@ -154,6 +171,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 }
 
+/**
+ * Where an address with no page goes when docs.json sets `errors.404.redirect`, as on Mintlify: the home page, or that
+ * of the locale. Not the home page itself, which has nowhere better to go (and could loop), nor a file name, which
+ * stays a 404 so a missing image or download is not answered with a page.
+ */
+function missingPageRedirect(docSlug: Array<string> | undefined, locale: string | undefined, defaultLocale: string): string | undefined {
+  if (!getNotFoundRedirect() || !docSlug?.length || /\.[a-z0-9]+$/i.test(docSlug[docSlug.length - 1])) return undefined
+  return locale ? localizedPath('/', locale, defaultLocale) : '/'
+}
+
 export default async function DocsPage({ params }: PageProps) {
   const routeParams = await params
   const i18n = await getEffectiveI18nConfig()
@@ -162,6 +189,8 @@ export default async function DocsPage({ params }: PageProps) {
   // the same path (and so reader-auth sites always render per request).
   const reader = await getReaderContext()
   const requestedPath = `/${(routeParams.slug ?? []).join('/')}`
+  // A page the reader may not see and one that is not published are answered like an address with no page.
+  const missingTarget = missingPageRedirect(route.docSlug, route.isLocaleRoute ? route.locale : undefined, i18n.defaultLocale)
   const doc = await getDocFromParams(
     route.docSlug,
     route.isLocaleRoute ? route.locale : undefined,
@@ -174,10 +203,10 @@ export default async function DocsPage({ params }: PageProps) {
       const target = await loadRootDocumentRedirect({ i18n, reader, locale: route.isLocaleRoute ? route.locale : undefined })
       if (target) redirect(target)
     }
-    denyDocumentAccess(reader, requestedPath)
+    denyDocumentAccess(reader, requestedPath, missingTarget)
   }
   if (!(await canReaderViewResolvedDoc(doc, reader, route.isLocaleRoute ? route.locale : undefined))) {
-    denyDocumentAccess(reader, requestedPath)
+    denyDocumentAccess(reader, requestedPath, missingTarget)
   }
 
   const siteUrl = getSiteUrl()
@@ -209,7 +238,7 @@ export default async function DocsPage({ params }: PageProps) {
     pageUrl: `${siteUrl}${canonicalHref}`,
     id: doc.id,
     title: doc.title,
-    description: doc.description,
+    description: await tagDescription(doc),
     keywords: doc.keywords,
     lastUpdated: doc.lastUpdated,
     locale: contentLocale,
@@ -231,9 +260,12 @@ export default async function DocsPage({ params }: PageProps) {
   const playground = resolvePlaygroundDisplay(doc.playground, getApiPlaygroundDisplay())
   if (doc.openapi) {
     const lookup = await lookupApiOperationForFrontmatter(doc.openapi)
-    // A hidden or excluded operation is withheld on purpose: 404 on every site.
+    // An excluded operation is withheld on purpose: 404 on every site. A hidden one is rendered, as on Mintlify.
     // Only a reference that cannot be resolved at all keeps the authored page, with a notice.
-    if (lookup.node === null && lookup.reason === 'withheld') notFound()
+    if (lookup.node === null && lookup.reason === 'withheld') {
+      if (missingTarget) redirect(missingTarget)
+      notFound()
+    }
     const operationNode = lookup.node
 
     if (!operationNode) {
@@ -263,10 +295,10 @@ export default async function DocsPage({ params }: PageProps) {
           <JsonLdScript data={jsonLd} />
           {localeNotice}
           <div className="not-prose">
-            <DocHeader doc={doc} eyebrow={getEyebrowMode() === 'path' ? nav.groupPath : nav.group} />
+            <DocHeader doc={doc} eyebrow={getEyebrowMode() === 'path' ? nav.groupPath : nav.group} showDescription={doc.descriptionPlacement !== 'operation'} />
           </div>
           <ApiLayout>
-            <OperationPanel operation={operationNode.operation} showDescription={!doc.description} playground={playground} locale={contentLocale}>
+            <OperationPanel operation={operationNode.operation} showDescription={!doc.description || doc.descriptionPlacement === 'operation'} playground={'revealed' in lookup && playground === 'interactive' ? 'simple' : playground} locale={contentLocale}>
               <Body />
             </OperationPanel>
           </ApiLayout>
@@ -285,9 +317,8 @@ export default async function DocsPage({ params }: PageProps) {
       {localeAvailability}
       {localizedNavigation}
       <JsonLdScript data={jsonLd} />
-      <DocLayout doc={doc} locale={contentLocale} navigation={nav}>
+      <DocLayout doc={doc} locale={contentLocale} navigation={nav} endpoint={doc.manualApi ? <ManualApiEndpoint operation={doc.manualApi} playground={playground} locale={contentLocale} /> : undefined}>
         {localeNotice}
-        {doc.manualApi ? <ManualApiEndpoint operation={doc.manualApi} playground={playground} locale={contentLocale} /> : null}
         <Content />
       </DocLayout>
     </>
