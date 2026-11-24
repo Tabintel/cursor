@@ -9,6 +9,8 @@
 import { createContext, useContext, useEffect, useId, useRef, type ReactNode } from 'react'
 import { ChevronDown } from 'lucide-react'
 import { Icon } from '@/components/mdx/content-icon'
+import { InlineCodeText } from '@/components/mdx/inline-code-text'
+import { accordionAnchorId, accordionChildrenId } from '@/lib/field-anchor'
 import { cn } from '@/lib/utils'
 
 /**
@@ -41,19 +43,11 @@ export interface AccordionGroupProps {
   className?: string
 }
 
-function normalizeId(value: string): string {
-  return value
-    .toLowerCase()
-    .trim()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-|-$/g, '')
-}
-
 /** Render one disclosure, either independently or as part of AccordionGroup. */
 export function Accordion({ title, description, id, icon, iconType, defaultOpen, children }: AccordionProps) {
   const group = useContext(AccordionGroupContext)
   const generatedId = useId().replace(/:/g, '')
-  const value = id || normalizeId(title) || generatedId
+  const value = accordionAnchorId({ id, title }) || generatedId
   const ref = useRef<HTMLDetailsElement>(null)
   const open = Boolean(defaultOpen) || Boolean(group?.defaultValue.includes(value))
 
@@ -71,7 +65,7 @@ export function Accordion({ title, description, id, icon, iconType, defaultOpen,
     >
       <summary
         data-accordion-trigger
-        aria-controls={`${value}-accordion-children`}
+        aria-controls={accordionChildrenId(value)}
         className="group flex w-full cursor-pointer list-none items-start justify-between gap-4 px-4 py-4 text-left transition-colors hover:bg-muted/35 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent [&::-webkit-details-marker]:hidden"
       >
         <span className="flex min-w-0 gap-3">
@@ -81,7 +75,7 @@ export function Accordion({ title, description, id, icon, iconType, defaultOpen,
             </span>
           ) : null}
           <span className="min-w-0">
-            <span className="block text-base font-semibold leading-6 text-foreground">{title}</span>
+            <span className="block text-base font-semibold leading-6 text-foreground"><InlineCodeText>{title}</InlineCodeText></span>
             {description ? (
               <span className="mt-0.5 block text-sm font-normal leading-5 text-foreground/60">{description}</span>
             ) : null}
@@ -89,7 +83,7 @@ export function Accordion({ title, description, id, icon, iconType, defaultOpen,
         </span>
         <ChevronDown className="mt-1 h-4 w-4 shrink-0 text-foreground/45 transition-transform duration-200 group-open/accordion:rotate-180" aria-hidden="true" />
       </summary>
-      <div id={`${value}-accordion-children`} role="region" className="thally-accordion-content prose prose-sm px-4 pb-5 pt-1 text-foreground/80 dark:prose-invert">
+      <div id={accordionChildrenId(value)} role="region" className="thally-accordion-content prose prose-sm px-4 pb-5 pt-1 text-foreground/80 dark:prose-invert">
         {children}
       </div>
     </details>

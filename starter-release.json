@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "starterVersion": 2,
+  "starterVersion": 3,
   "repository": "thallylabs/starter",
   "defaultBranch": "main",
   "runtime": {
     "repository": "thallylabs/thally",
-    "commitSha": "6184037a97e007962e569d51b52d95829f3b29db",
-    "treeSha": "05622ff5fd9dcaf4bfca3b8dc0eb2ff68c94a08d"
+    "commitSha": "49a68f1ac5b54dd2b16c9325f93cbc0d3ab9185f",
+    "treeSha": "504441ce3e26b9f699315b2b6f12c423482180b6"
   },
   "packages": {
-    "@thallylabs/core": "^0.2.16"
+    "@thallylabs/core": "^0.2.18"
   },
   "ownership": {
     "frameworkSyncEligible": [
@@ -27,6 +27,8 @@
       "src/mdx/rehype.test.ts",
       "src/mdx/__tests__/test-html.ts",
       "src/mdx/remark.ts",
+      "src/mdx/smart-quotes.ts",
+      "src/mdx/smart-quotes.test.ts",
       "src/mdx/snippet-registry.ts",
       "src/styles/**",
       "src/test/**",
@@ -41,7 +43,8 @@
       "scripts/lib/**",
       "scripts/check-cloudflare-worker-size.mts",
       "scripts/smoke-cloudflare.mts",
-      "scripts/mint-reader-token.ts"
+      "scripts/mint-reader-token.ts",
+      "src/mdx/grammars/**"
     ],
     "userOwnedNeverOverwrite": [
       "src/content/**",
